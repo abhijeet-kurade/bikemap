@@ -61,7 +61,8 @@ Invoke-WebRequest -uri https://stripe-bikemap.appspot.com/map.png -Method Post -
 ### Opening an Image Manually
 
 You can open `example.png` in a web browser
-or some other image previewer.
+or some other image previewer
+using the *File > File Open...* menu.
 
 If you like,
 you can use the following invocations
