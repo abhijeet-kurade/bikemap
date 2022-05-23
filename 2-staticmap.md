@@ -28,7 +28,7 @@ The [staticmap_example.json] file contains:
   * a purple path along Beacon Avenue
   * a red path for part of the Chief Sealth Trail
 
-### POSTing a request with curl
+### Example: POSTing a request with curl
 
 Let's use the [curl] command-line HTTP client to
 send a request to `staticmap`.
