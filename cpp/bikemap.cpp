@@ -5,8 +5,20 @@
 
 void handle_json() {
     using nlohmann::json;
+    // raw, multiline string literal
+    std::string jsonString = R"(
+        {
+            "foo": {
+                "bar": [
+                    {"paint": "red"},
+                    {"paint": "green"},
+                    {"paint": "blue"}
+                ]
+            }
+        }
+    )";
     // create from string
-    json j = json::parse("{\"foo\": {\"bar\": [{\"paint\": \"red\"}, {\"paint\": \"green\"}, {\"paint\": \"blue\"}]}}");
+    json j = json::parse(jsonString);
 
     // explicit serialization to string
     std::string s = j.dump();
