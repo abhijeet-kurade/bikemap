@@ -52,24 +52,68 @@ I would be happy to learn about other compilers/versions.
 
 Here are some examples to give you an idea how to use the class.
 
-Assume you want to create the JSON object
+Beside the examples below, you may want to:
+
+→ Check the [documentation](https://json.nlohmann.me/)\
+→ Browse the [standalone example files](https://github.com/nlohmann/json/tree/develop/docs/examples)
+
+Every API function (documented in the [API Documentation](https://json.nlohmann.me/api/basic_json/)) has a corresponding standalone example file. For example, the [`emplace()`](https://json.nlohmann.me/api/basic_json/emplace/) function has a matching [emplace.cpp](https://github.com/nlohmann/json/blob/develop/docs/examples/emplace.cpp) example file.
+
+### Read JSON from a file
+
+The `json` class provides an API for manipulating a JSON value. To create a `json` object by reading a JSON file:
+
+```cpp
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
+// ...
+
+std::ifstream f("example.json");
+json data = json::parse(f);
+```
+
+### Creating `json` objects from JSON literals
+
+Assume you want to hard-code this literal JSON value in a file, as a `json` object:
 
 ```json
 {
-  "pi": 3.141,
-  "happy": true,
-  "name": "Niels",
-  "nothing": null,
-  "answer": {
-    "everything": 42
-  },
-  "list": [1, 0, 2],
-  "object": {
-    "currency": "USD",
-    "value": 42.99
-  }
+  "pi": 3.142,
+  "happy": true
 }
 ```
+
+There are various options:
+
+```cpp
+// Using (raw) string literals and json::parse
+json ex1 = json::parse(R"(
+  {
+    "pi": 3.142,
+    "happy": true
+  }
+)");
+
+// Using user-defined (raw) string literals
+json ex2 = R"(
+  {
+    "pi": 3.142,
+    "happy": true
+  }
+)"_json;
+
+// Using initializer lists
+json ex3 = {
+  {"happy", true},
+  {"pi", 3.142},
+};
+```
+
+### Reading and writing individual object keys
+
+Assume you want to create this JSON object by individually setting each key-value pair:
 
 With the JSON class, you could write:
 
