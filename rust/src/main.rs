@@ -16,12 +16,10 @@ fn handle_untyped_json() -> Result<()> {
     let mut data: Value = serde_json::from_str(json_text)?;
 
     // Access parts of the data by indexing with square brackets.
-    // data["foo"]["bar"][1]["paint"]
     let color = &data["foo"]["bar"][1]["paint"];
     assert_eq!("green", color);
 
     // Update the data
-    // data["foo"]["quux"] = {"stuff": "nonsense", "nums": [2.718, 3.142]}
     data["foo"]["quux"] = json!({"stuff": "nonsense", "nums": [2.718, 3.142]});
 
     println!("{}", serde_json::to_string_pretty(&data).unwrap());
