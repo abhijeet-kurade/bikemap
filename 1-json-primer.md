@@ -17,7 +17,7 @@ in a variety of programming languages.
 >
 > We suggest using ad hoc dynamic objects for this interview,
 > even in statically typed languages.
-> However, if you prefer to declare classes to represent data,
+> However, if you prefer to declare **classes** to represent data,
 > go ahead.
 
 Given this JSON *text*:
@@ -92,15 +92,16 @@ in subdirectories of this repo.
 * [Go](./go/README.md)
 * [Java](./java/README.md)
 * [JavaScript](./javascript/README.md)
+* [Kotlin](./kotlin/README.md)
 * [Python](./python/README.md)
 * [Ruby](./ruby/README.md)
+* [Rust](./rust/README.md)
 * [Scala](./scala/README.md)
 
 ## Other Languages
 
 * Clojure: Use [data.json]
 * Common Lisp: Use [cl-json]
-* Kotlin: See [Java](./java/README.md)
 * PHP: use [php-json]
 
 [data.json]: http://clojure.github.io/data.json/
