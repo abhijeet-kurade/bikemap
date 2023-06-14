@@ -9,36 +9,64 @@ import (
 )
 
 func main() {
-	handle_json()
+	if err := handleJSON(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // See ../1-json-primer.md for an explanation
-func handle_json() {
-	jsonText := `{"foo": {"bar": [{"paint": "red"}, {"paint": "green"}, {"paint": "blue"}]}}`
-	data := make(map[string]interface{})
-	err := json.Unmarshal([]byte(jsonText), &data)
+func handleJSON() error {
+	jsonText := []byte(`
+		{
+		    "foo": {
+		        "bar": [
+		            {"paint": "red"},
+		            {"paint": "green"},
+		            {"paint": "blue"}
+		        ]
+		    }
+		}`)
+
+	// create an instance of our type to contain the unmarshalled JSON data
+	var obj JSONObj
+
+	if err := json.Unmarshal(jsonText, &obj); err != nil {
+		return err
+	}
+
+	// obtain the value of one of the paint colors, at the JSON "path" of: obj["foo"]["bar"][1]["paint"]
+	fmt.Printf("paint color: %s\n", obj.Foo.Bar[1].Paint)
+
+	// Add the additional data to the object, per the instructions.
+	obj.Quux.Stuff = "nonsense"
+	obj.Quux.Nums = []float64{2.718, 3.142}
+
+	// Marshall the whole object back out, formatting the JSON with indents to
+	// make it easier to read.
+	marshalledBytes, err := json.MarshalIndent(obj, "", "  ")
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	// data["foo"]["bar"][1]["paint"]
-	demoLetter := data["foo"].
-        (map[string]interface{})["bar"].
-        ([]interface{})[1].
-        (map[string]interface{})["paint"] // "green"
-	fmt.Printf("%v\n", demoLetter)
+	fmt.Println(string(marshalledBytes))
+	return nil
+}
 
-	// data["foo"]["quux"] = {"stuff": "nonsense", "nums": [2.718, 3.142]}
-	quux := map[string]interface{}{
-		"stuff": "nonsense",
-		"nums":  []float64{2.718, 3.142},
-	}
-	data["foo"].(map[string]interface{})["quux"] = quux
+// JSONObj is a type that represents the structure of the example JSON
+type JSONObj struct {
+	Foo struct {
+		Bar []PaintColor `json:"bar"`
+	} `json:"foo"`
 
-	result, err := json.MarshalIndent(data, "", "    ")
-	if err != nil {
-		log.Fatal(err)
-	}
+	Quux struct {
+		Stuff string    `json:"stuff"`
+		Nums  []float64 `json:"nums"`
+	} `json:"quux"`
+}
 
-	fmt.Printf("%s\n", result)
+// PaintColor encapsulates a JSON object with the key "paint" and string value
+// containing the name of a paint color
+// e.g. { "paint": "red" }
+type PaintColor struct {
+	Paint string `json:"paint"`
 }
