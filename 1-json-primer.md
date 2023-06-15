@@ -6,19 +6,15 @@ is a *text-based* data interchange format.
 [JSON]: https://www.json.org/
 
 Here, we'll show you how to parse a JSON *string*
-into an *unstructured object* (aka *dynamic object*)
-in a variety of programming languages.
+into an object in a variety of programming languages.
 
-> These operations are straightforward
-> in dynamically typed languages like
-> Python, Ruby, and JavaScript,
-> and harder in statically typed languages,
-> such as **Java**, **C#**, and **Go**.
->
-> We suggest using ad hoc dynamic objects for this interview,
-> even in statically typed languages.
-> However, if you prefer to declare **classes** to represent data,
-> go ahead.
+In some languages (like Python, Ruby, and JavaScript), this is more easily
+accomplished using *unstructured objects* (aka *dynamic objects*), while in
+others (like Go), the approach typically involves defining some types to parse
+the JSON data into.
+
+We suggest using whichever approach is more idiomatic for the language being
+used.
 
 Given this JSON *text*:
 
@@ -81,7 +77,7 @@ Note: implementations may sort the fields
 (`bar`/`quux` and `stuff`/`nums`) differently
 when serializing objects to JSON.
 
-## Sample Code for Unstructured Object Manipulation
+## Sample Code for JSON Object Manipulation
 
 You can find working *sample code* for JSON handling
 of the above example
