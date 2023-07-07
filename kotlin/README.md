@@ -29,7 +29,7 @@ To open the project in IntelliJ IDEA:
 A new window should then appear with the project.
 
 [jsoniter]: https://jsoniter.com/
-[App.kt]: ./src/main/kotlin/com/stripe/interview/App.kt
+[App.kt]: ./app/src/main/kotlin/com/stripe/interview/App.kt
 [JSON Primer]: ../1-json-primer.md
 [OkHttp]: https://square.github.io/okhttp/
 [Gradle]: https://gradle.org/
