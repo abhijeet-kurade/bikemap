@@ -9,4 +9,4 @@ Please write this code as you would anything
 that you plan on running for a long time:
 Focus on maintainability and readability!
 
-Proceed to [Part 1](../../issues/4), Parse JSON.
+Proceed to [Part 1](https://github.com/stripe-interview/bikemap/issues/4), Parse JSON.
